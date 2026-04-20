@@ -25,10 +25,7 @@ func _physics_process(delta: float) -> void:
 	
 	$Sketchfab_Scene.rotate_z(0)
 	
-	if velocity != Vector3.ZERO:
-		set_collision_mask_value(2,false)
-	else:
-		set_collision_mask_value(2, true)
+
 	
 	look_at(alvo_movimento, Vector3.UP, true)
 	var direcao = global_position.direction_to(alvo_movimento)
@@ -62,7 +59,10 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 
 		var pos_3d = atirar_raio_da_camera(event.position)
-
+		if event.double_click:
+			set_collision_mask_value(2,false)
+		else:
+			set_collision_mask_value(2, true)
 		if pos_3d != null:
 			print("Sucesso! O mouse clicou na posição 3D: ",pos_3d)
 			var mark = marcador.instantiate()
