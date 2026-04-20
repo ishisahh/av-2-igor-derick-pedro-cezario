@@ -3,6 +3,8 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+var runsp = 1
+
 
 var marcador = preload("res://marcador.tscn")
 
@@ -29,7 +31,7 @@ func _physics_process(delta: float) -> void:
 	
 	look_at(alvo_movimento, Vector3.UP, true)
 	var direcao = global_position.direction_to(alvo_movimento)
-	velocity = direcao * SPEED
+	velocity = direcao * SPEED * runsp
 
 	if (global_position.distance_to(alvo_movimento) < SPEED * delta):
 		velocity = Vector3.ZERO
@@ -61,8 +63,10 @@ func _input(event: InputEvent) -> void:
 		var pos_3d = atirar_raio_da_camera(event.position)
 		if event.double_click:
 			set_collision_mask_value(2,false)
+			runsp = 1.5
 		else:
 			set_collision_mask_value(2, true)
+			runsp = 1
 		if pos_3d != null:
 			print("Sucesso! O mouse clicou na posição 3D: ",pos_3d)
 			var mark = marcador.instantiate()
