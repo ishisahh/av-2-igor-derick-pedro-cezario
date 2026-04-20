@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://8dxx6itml4tk"]
+
+[ext_resource type="Texture2D" uid="uid://cditfe8kjw2yw" path="res://Screenshot 2026-04-12 at 21-38-48 johnny joestar king von - Pesquisa Google.png" id="1_lvuu3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lvuu3"]
+radius = 2.3049262
+
+[node name="Marcador" type="Sprite3D" unique_id=1749647580]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+billboard = 1
+texture = ExtResource("1_lvuu3")
+
+[node name="Mark" type="Area3D" parent="." unique_id=1701374528 groups=["Marcador"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mark" unique_id=2097215408]
+shape = SubResource("SphereShape3D_lvuu3")

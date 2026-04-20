@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://b127mwcsmag7"]
+
+[ext_resource type="PackedScene" uid="uid://df5ibcf1kqhxa" path="res://player.tscn" id="1_a202f"]
+[ext_resource type="Texture2D" uid="uid://cditfe8kjw2yw" path="res://Screenshot 2026-04-12 at 21-38-48 johnny joestar king von - Pesquisa Google.png" id="2_noarx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_noarx"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_a0tk4"]
+sky_material = SubResource("ProceduralSkyMaterial_noarx")
+
+[sub_resource type="Environment" id="Environment_r3fl7"]
+background_mode = 2
+sky = SubResource("Sky_a0tk4")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0tk4"]
+albedo_color = Color(1, 1, 0, 1)
+albedo_texture = ExtResource("2_noarx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r3fl7"]
+albedo_texture = ExtResource("2_noarx")
+
+[node name="Node3D" type="Node3D" unique_id=731852679]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=843665313]
+environment = SubResource("Environment_r3fl7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=226228973]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Chão" type="CSGCombiner3D" parent="." unique_id=1921844007]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Chão" unique_id=1264646309]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+size = Vector3(25, 0.2, 25)
+
+[node name="Player" parent="." unique_id=1760953237 instance=ExtResource("1_a202f")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1493151803]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.067748785, 12.510374, 0.3709669)
+
+[node name="Obstáculos" type="CSGCombiner3D" parent="." unique_id=1132010174]
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obstáculos" unique_id=1427319860]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -4)
+material_override = SubResource("StandardMaterial3D_a0tk4")
+size = Vector3(14, 3, 1)
+material = SubResource("StandardMaterial3D_r3fl7")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Obstáculos" unique_id=1697156470]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.7013683, 0, -0.2389679)
+material_override = SubResource("StandardMaterial3D_a0tk4")
+size = Vector3(14, 3, 1)
+material = SubResource("StandardMaterial3D_r3fl7")
